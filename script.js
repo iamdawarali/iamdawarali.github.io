@@ -142,6 +142,7 @@
       ['Bash', '💻'], ['Python', '🐍'], ['Go (basics)', '🐹']
     ]);
     const file = iconFiles.get(name);
+    // If icons folder or file not present, fall back to emoji gracefully
     if (file) return { type: 'icon', value: `./assets/icons/${file}` };
     return { type: 'emoji', value: emojis.get(name) || '🔧' };
   }
