@@ -26,6 +26,7 @@
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#certifications">Certifications</a>
+          <a href="#education">Education</a>
           <a href="#contact">Contact</a>
           <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
         </nav>
@@ -52,7 +53,12 @@
       </section>
 
       <section id="skills" class="section container">
-        <h2>Skills</h2>
+        <h2>Tech Stack</h2>
+        <div class="tabs" id="skillsTabs">
+          <button class="tab active" data-tab="cloud">Cloud</button>
+          <button class="tab" data-tab="devops">DevOps</button>
+          <button class="tab" data-tab="others">Others</button>
+        </div>
         <div id="skillsGrid" class="grid"></div>
       </section>
 
@@ -63,6 +69,7 @@
 
       <section id="projects" class="section container">
         <h2>Projects</h2>
+        <div class="filters" id="projectFilters"></div>
         <div id="projectsGrid" class="grid"></div>
       </section>
 
@@ -71,8 +78,18 @@
         <ul id="certList" class="list"></ul>
       </section>
 
+      <section id="education" class="section container">
+        <h2>Education</h2>
+        <div id="eduList" class="timeline"></div>
+      </section>
+
       <section id="contact" class="section container">
         <h2>Contact</h2>
+        <p class="lead">My inbox is always open — whether you have a question or just want to say hello.</p>
+        <div class="cta-row">
+          <a id="contactCtaButton" class="button primary" href="#">Say Hello 👋</a>
+        </div>
+        <div style="height: 10px"></div>
         <div id="contactCards" class="cards"></div>
       </section>
     </main>

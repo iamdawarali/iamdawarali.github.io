@@ -36,6 +36,57 @@
     }
   }
 
+  function groupSkillsIntoTabs(skills) {
+    // Heuristic mapping to tabs similar to reference site's Frontend/Backend/Others
+    const tabs = { cloud: {}, devops: {}, others: {} };
+    if (!skills) return tabs;
+    const cloudKeys = ['Cloud Platforms'];
+    const devopsKeys = ['DevOps Tools'];
+    const othersKeys = ['Scripting & Automation', 'Operating Systems', 'Networking & Security', 'Monitoring & Observability', 'Applications Administration', 'Soft Skills'];
+    Object.entries(skills).forEach(([group, items]) => {
+      const key = cloudKeys.includes(group) ? 'cloud' : devopsKeys.includes(group) ? 'devops' : 'others';
+      tabs[key][group] = items;
+    });
+    return tabs;
+  }
+
+  function renderSkillsTabs(skills) {
+    const tabsEl = document.getElementById('skillsTabs');
+    const grid = document.getElementById('skillsGrid');
+    const grouped = groupSkillsIntoTabs(skills);
+    let active = 'cloud';
+    function renderActive() {
+      grid.innerHTML = '';
+      const groups = grouped[active];
+      Object.entries(groups).forEach(([group, items]) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const title = document.createElement('h3');
+        title.textContent = group;
+        const chips = document.createElement('div');
+        chips.className = 'chips';
+        items.forEach((skill) => {
+          const chip = document.createElement('span');
+          chip.className = 'chip';
+          chip.textContent = skill;
+          chips.appendChild(chip);
+        });
+        card.append(title, chips);
+        grid.appendChild(card);
+      });
+      grid.classList.add('cols-2');
+    }
+    tabsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab');
+      if (!btn) return;
+      tabsEl.querySelectorAll('.tab').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      active = btn.getAttribute('data-tab');
+      renderActive();
+    });
+    renderActive();
+  }
+
   function setText(id, text) {
     const el = document.getElementById(id);
     if (el && typeof text === 'string' && text.trim().length) el.textContent = text;
@@ -111,11 +162,11 @@
     });
   }
 
-  function renderProjects(projects) {
+  function renderProjects(projects, activeCategory = 'all') {
     const grid = document.getElementById('projectsGrid');
     grid.classList.add('cols-3');
     grid.innerHTML = '';
-    (projects || []).forEach((p) => {
+    (projects || []).filter((p) => activeCategory === 'all' || p.category === activeCategory).forEach((p) => {
       const card = document.createElement('div');
       card.className = 'card';
       const h3 = document.createElement('h3');
@@ -139,6 +190,48 @@
       if (p.demo) setLink(links, 'Live', p.demo, '🚀');
       card.append(h3, meta, desc, chips, links);
       grid.appendChild(card);
+    });
+  }
+
+  function renderProjectFilters(projects) {
+    const filters = document.getElementById('projectFilters');
+    filters.innerHTML = '';
+    const cats = Array.from(new Set(['all', ...(projects || []).map(p => p.category).filter(Boolean)]));
+    let active = 'all';
+    function draw() {
+      filters.innerHTML = '';
+      cats.forEach((c) => {
+        const b = document.createElement('button');
+        b.className = `filter${c === active ? ' active' : ''}`;
+        b.setAttribute('data-cat', c);
+        b.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+        filters.appendChild(b);
+      });
+    }
+    filters.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter');
+      if (!btn) return;
+      active = btn.getAttribute('data-cat');
+      draw();
+      renderProjects(window.__PROJECTS__, active);
+    });
+    draw();
+  }
+
+  function renderEducation(education) {
+    const list = document.getElementById('eduList');
+    if (!list) return;
+    list.innerHTML = '';
+    (education || []).forEach((ed) => {
+      const item = document.createElement('div');
+      item.className = 'timeline-item';
+      const h3 = document.createElement('h3');
+      h3.textContent = `${ed.degree} — ${ed.school}`;
+      const where = document.createElement('div');
+      where.className = 'where';
+      where.textContent = [ed.location, ed.period].filter(Boolean).join(' • ');
+      item.append(h3, where);
+      list.appendChild(item);
     });
   }
 
@@ -212,11 +305,16 @@
     hydrateHero(profile);
     hydrateAbout(profile);
     renderSocials(profile.contact);
-    renderSkills(profile.skills);
+    renderSkillsTabs(profile.skills);
     renderExperience(profile.experience);
-    renderProjects(profile.projects);
+    window.__PROJECTS__ = profile.projects || [];
+    renderProjectFilters(window.__PROJECTS__);
+    renderProjects(window.__PROJECTS__, 'all');
     renderCertifications(profile.certifications);
+    renderEducation(profile.education);
     renderContact(profile.contact);
+    const cta = document.getElementById('contactCtaButton');
+    if (cta && profile?.contact?.email) cta.href = `mailto:${profile.contact.email}`;
   }
 
   if (document.readyState === 'loading') {

@@ -1,67 +1,112 @@
 {
   "name": "Dawar Ali",
   "role": "DevOps Engineer",
-  "bio": "DevOps engineer focused on CI/CD, Kubernetes, and AWS. I design resilient platforms, automate delivery, and improve developer velocity.
-",
-  "about": "I specialize in building scalable infrastructure and reliable delivery pipelines. I enjoy solving reliability challenges, reducing toil, and enabling teams with strong platform engineering practices.",
-  "location": "",
+  "bio": "DevOps Engineer with 6+ years automating and optimizing AWS workloads. I design scalable infrastructure, robust CI/CD, and secure cloud platforms.",
+  "about": "DevOps Engineer with over 6 years of experience automating and optimizing mission‑critical deployments in AWS. Proficient with CI/CD (Jenkins, GitHub), containers (Docker, Kubernetes), and Infrastructure as Code (Terraform, CloudFormation). I integrate security into delivery, improve reliability, and collaborate across teams to ship with confidence.",
+  "location": "Gurugram, Haryana, India",
   "contact": {
-    "email": "",
+    "email": "iamdawarali@gmail.com",
+    "phone": "+91 9070055333",
     "linkedin": "https://www.linkedin.com/in/dawar-ali-devops/",
     "github": "",
     "website": ""
   },
+  "education": [
+    {
+      "degree": "B.Tech",
+      "school": "Islamic University Of Science and Technology",
+      "location": "Srinagar, Jammu and Kashmir, India",
+      "period": "Aug 2015 — Aug 2019"
+    }
+  ],
   "skills": {
-    "Cloud & Platforms": ["AWS", "Kubernetes", "Docker"],
-    "Infrastructure as Code": ["Terraform", "Helm"],
-    "CI/CD": ["GitHub Actions", "Jenkins", "Argo CD"],
-    "Monitoring & Observability": ["Prometheus", "Grafana", "ELK"]
+    "Cloud Platforms": ["AWS", "GCP"],
+    "DevOps Tools": ["Jenkins", "GitHub", "GitLab", "Docker", "Kubernetes", "Terraform"],
+    "Scripting & Automation": ["Bash", "CloudFormation", "Ansible"],
+    "Operating Systems": ["Linux (Ubuntu, CentOS, Red Hat)", "Windows"],
+    "Networking & Security": ["Network security", "SSL/TLS", "VPN", "Firewall"],
+    "Monitoring & Observability": ["Loki", "NewRelic", "Prometheus"],
+    "Applications Administration": ["GitLab", "Google Workspace", "Slack", "Cloudflare", "Jira"],
+    "Soft Skills": ["Problem solving", "Communication", "Cross‑functional collaboration", "Team management"]
   },
   "experience": [
     {
       "role": "DevOps Engineer",
-      "company": "Sample Company",
-      "location": "",
-      "period": "2023 — Present",
+      "company": "ixigo",
+      "location": "Gurugram, Haryana, India",
+      "period": "Apr 2022 — Present",
       "highlights": [
-        "Built GitHub Actions pipelines reducing deploy time by 60%",
-        "Provisioned AWS infrastructure with Terraform across multiple environments",
-        "Implemented cluster observability with Prometheus and Grafana"
-      ]
+        "Managed and maintained AWS infrastructure; operated Kubernetes for secure, scalable microservices environments",
+        "Built and maintained CI/CD pipelines with Jenkins and GitHub",
+        "Managed Google Workspace and Slack administration",
+        "Integrated security tooling into SDLC for compliance readiness (DPDP)",
+        "Managed Cloudflare WAF and incident response processes",
+        "Implemented observability with Loki to ensure high availability",
+        "Coordinated vendor relations and streamlined operations"
+      ],
+      "tech": ["AWS", "Jenkins", "GitLab", "Docker", "Kubernetes", "Cloudflare", "Loki", "Jamf", "ScaleFusion", "Bash"]
     },
     {
-      "role": "Site Reliability Engineer",
-      "company": "Sample Company",
-      "location": "",
-      "period": "2021 — 2023",
+      "role": "System Administrator",
+      "company": "ixigo",
+      "location": "Gurugram, Haryana, India",
+      "period": "Jul 2021 — Mar 2022",
       "highlights": [
-        "Migrated workloads to Kubernetes with zero-downtime rollouts",
-        "Introduced IaC best practices and modules for reuse",
-        "Improved incident response with dashboards and alerts"
-      ]
+        "Maintained in‑house servers including Cloud VPN for reliable operations",
+        "Implemented LDAP with Google services and integrated with Cloud VPN and OS auth",
+        "Optimized infra with HAProxy, DNS, DHCP, Apache, Nginx",
+        "Migrated VPN server to AWS improving uptime and security",
+        "Secured MongoDB/MySQL via IP allow‑listing",
+        "Automated manual tasks with Bash scripting",
+        "Configured DNS/DHCP zones"
+      ],
+      "tech": ["AWS", "HAProxy", "DNS", "DHCP", "Apache", "Nginx", "LDAP", "Google Workspace", "MongoDB", "MySQL", "Bash"]
+    },
+    {
+      "role": "System Engineer",
+      "company": "ixigo",
+      "location": "Gurugram, Haryana, India",
+      "period": "Oct 2019 — Jun 2021",
+      "highlights": [
+        "Directed and monitored installed systems and infrastructure for performance",
+        "Maintained high levels of system uptime",
+        "Administered mobile device management solutions"
+      ],
+      "tech": []
     }
   ],
   "projects": [
     {
-      "name": "Kubernetes GitOps Platform",
-      "description": "Multi-tenant GitOps platform with Argo CD, app-of-apps pattern, and automated environment promotion.",
-      "tech": ["Kubernetes", "Argo CD", "Helm", "GitHub Actions"],
+      "name": "AWS Platform Hardening",
+      "description": "Hardened AWS accounts and workloads with IAM least‑privilege, CloudTrail/Config, and WAF protections; codified with Terraform.",
+      "tech": ["AWS", "Terraform", "CloudTrail", "AWS Config", "Cloudflare WAF"],
       "repo": "",
       "demo": "",
+      "category": "cloud",
       "period": "2024"
     },
     {
-      "name": "Serverless CI/CD on AWS",
-      "description": "Event-driven CI/CD pipeline with CodeBuild and GitHub webhooks deploying to Lambda and API Gateway.",
-      "tech": ["AWS", "Lambda", "API Gateway", "Terraform"],
+      "name": "Kubernetes CI/CD with Jenkins",
+      "description": "Multi‑env pipelines building Docker images, security scanning, and progressive deploys to EKS with Helm.",
+      "tech": ["Jenkins", "Docker", "Kubernetes", "Helm"],
       "repo": "",
       "demo": "",
+      "category": "cicd",
       "period": "2023"
+    },
+    {
+      "name": "Observability with Loki",
+      "description": "Centralized logs with Loki and dashboards for SLOs, improving MTTR and incident response.",
+      "tech": ["Loki", "Prometheus", "Grafana"],
+      "repo": "",
+      "demo": "",
+      "category": "observability",
+      "period": "2022"
     }
   ],
   "certifications": [
-    { "name": "AWS Certified Solutions Architect – Associate", "issuer": "AWS", "year": "", "url": "" },
-    { "name": "CKA: Certified Kubernetes Administrator", "issuer": "CNCF", "year": "", "url": "" }
+    { "name": "AWS Certified Cloud Practitioner", "issuer": "AWS", "year": "", "url": "" },
+    { "name": "Certified Kubernetes Administrator (CKA)", "issuer": "CNCF", "year": "", "url": "" }
   ],
   "resumeUrl": ""
 }
