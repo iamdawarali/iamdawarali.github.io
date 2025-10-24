@@ -15,14 +15,19 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚙️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.png">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header terminal-header">
       <div class="container header-inner">
-        <a class="brand" href="#home" id="brandName">Dawar Ali</a>
+        <div class="term-buttons" aria-hidden="true">
+          <span class="btn close"></span>
+          <span class="btn min"></span>
+          <span class="btn max"></span>
+        </div>
+        <a class="brand" href="#home" id="brandName">dawar@portfolio: ~</a>
         <nav class="nav">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>

@@ -395,7 +395,11 @@
   }
 
   function hydrateHero(profile) {
-    setText('brandName', profile.name);
+    const brandEl = document.getElementById('brandName');
+    // Preserve terminal-style prompt if already set
+    if (brandEl && !/@/.test(brandEl.textContent || '')) {
+      setText('brandName', profile.name);
+    }
     setText('heroName', profile.name);
     setText('heroRole', profile.role);
     setText('heroBio', profile.bio);
