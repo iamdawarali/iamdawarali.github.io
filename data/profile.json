@@ -1,0 +1,69 @@
+{
+  "name": "Dawar Ali",
+  "role": "DevOps Engineer",
+  "bio": "DevOps engineer focused on CI/CD, Kubernetes, and AWS. I design resilient platforms, automate delivery, and improve developer velocity.
+",
+  "about": "I specialize in building scalable infrastructure and reliable delivery pipelines. I enjoy solving reliability challenges, reducing toil, and enabling teams with strong platform engineering practices.",
+  "location": "",
+  "contact": {
+    "email": "",
+    "linkedin": "https://www.linkedin.com/in/dawar-ali-devops/",
+    "github": "",
+    "website": ""
+  },
+  "skills": {
+    "Cloud & Platforms": ["AWS", "Kubernetes", "Docker"],
+    "Infrastructure as Code": ["Terraform", "Helm"],
+    "CI/CD": ["GitHub Actions", "Jenkins", "Argo CD"],
+    "Monitoring & Observability": ["Prometheus", "Grafana", "ELK"]
+  },
+  "experience": [
+    {
+      "role": "DevOps Engineer",
+      "company": "Sample Company",
+      "location": "",
+      "period": "2023 — Present",
+      "highlights": [
+        "Built GitHub Actions pipelines reducing deploy time by 60%",
+        "Provisioned AWS infrastructure with Terraform across multiple environments",
+        "Implemented cluster observability with Prometheus and Grafana"
+      ]
+    },
+    {
+      "role": "Site Reliability Engineer",
+      "company": "Sample Company",
+      "location": "",
+      "period": "2021 — 2023",
+      "highlights": [
+        "Migrated workloads to Kubernetes with zero-downtime rollouts",
+        "Introduced IaC best practices and modules for reuse",
+        "Improved incident response with dashboards and alerts"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Kubernetes GitOps Platform",
+      "description": "Multi-tenant GitOps platform with Argo CD, app-of-apps pattern, and automated environment promotion.",
+      "tech": ["Kubernetes", "Argo CD", "Helm", "GitHub Actions"],
+      "repo": "",
+      "demo": "",
+      "period": "2024"
+    },
+    {
+      "name": "Serverless CI/CD on AWS",
+      "description": "Event-driven CI/CD pipeline with CodeBuild and GitHub webhooks deploying to Lambda and API Gateway.",
+      "tech": ["AWS", "Lambda", "API Gateway", "Terraform"],
+      "repo": "",
+      "demo": "",
+      "period": "2023"
+    }
+  ],
+  "certifications": [
+    { "name": "AWS Certified Solutions Architect – Associate", "issuer": "AWS", "year": "", "url": "" },
+    { "name": "CKA: Certified Kubernetes Administrator", "issuer": "CNCF", "year": "", "url": "" }
+  ],
+  "resumeUrl": ""
+}
+
+

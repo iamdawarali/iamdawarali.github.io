@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dawar Ali — DevOps Engineer</title>
+    <meta name="description" content="Portfolio of Dawar Ali, DevOps Engineer — projects, experience, and contact." />
+    <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dawar Ali — DevOps Engineer" />
+    <meta property="og:description" content="Portfolio of Dawar Ali, DevOps Engineer — projects, experience, and contact." />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚙️</text></svg>">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#home" id="brandName">Dawar Ali</a>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+          <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="site-main">
+      <section class="hero container">
+        <div>
+          <h1 id="heroName">Dawar Ali</h1>
+          <p class="subtitle" id="heroRole">DevOps Engineer</p>
+          <p class="lead" id="heroBio">I build reliable CI/CD pipelines, scalable infrastructure, and delightful developer platforms.</p>
+          <div class="cta-row">
+            <a id="ctaPrimary" class="button primary" href="#projects">View Projects</a>
+            <a id="ctaSecondary" class="button ghost" href="#contact">Contact</a>
+          </div>
+          <div class="socials" id="socialLinks"></div>
+        </div>
+      </section>
+
+      <section id="about" class="section container">
+        <h2>About</h2>
+        <p id="aboutText">This portfolio is data-driven. Update <code>data/profile.json</code> to customize your information.</p>
+      </section>
+
+      <section id="skills" class="section container">
+        <h2>Skills</h2>
+        <div id="skillsGrid" class="grid"></div>
+      </section>
+
+      <section id="experience" class="section container">
+        <h2>Experience</h2>
+        <div id="experienceList" class="timeline"></div>
+      </section>
+
+      <section id="projects" class="section container">
+        <h2>Projects</h2>
+        <div id="projectsGrid" class="grid"></div>
+      </section>
+
+      <section id="certifications" class="section container">
+        <h2>Certifications</h2>
+        <ul id="certList" class="list"></ul>
+      </section>
+
+      <section id="contact" class="section container">
+        <h2>Contact</h2>
+        <div id="contactCards" class="cards"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p id="footerText">© <span id="year"></span> <span id="footerName">Dawar Ali</span>. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Fallback data for local file viewing (no server). Update alongside data/profile.json.
+      window.PROFILE_FALLBACK = {
+        name: "Dawar Ali",
+        role: "DevOps Engineer",
+        bio: "I build reliable CI/CD pipelines, scalable infrastructure, and delightful developer platforms.",
+        location: "",
+        contact: {
+          email: "",
+          linkedin: "https://www.linkedin.com/in/dawar-ali-devops/",
+          github: "",
+          website: ""
+        },
+        skills: {
+          "Cloud & Platforms": ["AWS", "Kubernetes", "Docker"],
+          "Infra as Code": ["Terraform", "Helm"],
+          "CI/CD": ["GitHub Actions", "Jenkins"],
+          "Observability": ["Prometheus", "Grafana"]
+        },
+        experience: [],
+        projects: [],
+        certifications: [],
+        resumeUrl: ""
+      };
+    </script>
+    <script src="./script.js" defer></script>
+  </body>
+  </html>
+
+
