@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" role="img" aria-label="Himalayan mountains silhouette">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1020"/>
+    </linearGradient>
+    <linearGradient id="ridge1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16213a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="ridge2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f2a44"/>
+      <stop offset="100%" stop-color="#121a2e"/>
+    </linearGradient>
+    <linearGradient id="ridge3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a3757"/>
+      <stop offset="100%" stop-color="#17233d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="420" fill="url(#sky)"/>
+  <path d="M0 300 L180 220 L260 260 L360 210 L520 290 L620 230 L720 280 L860 210 L980 260 L1100 200 L1240 250 L1440 180 L1440 420 L0 420 Z" fill="url(#ridge3)" opacity="0.6"/>
+  <path d="M0 330 L120 280 L220 320 L340 270 L480 330 L560 300 L700 340 L820 290 L950 330 L1100 300 L1280 330 L1440 300 L1440 420 L0 420 Z" fill="url(#ridge2)" opacity="0.75"/>
+  <path d="M0 360 L100 330 L200 360 L320 330 L460 360 L560 350 L700 370 L840 350 L980 370 L1140 350 L1300 370 L1440 360 L1440 420 L0 420 Z" fill="url(#ridge1)"/>
+</svg>
+
+
