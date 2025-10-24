@@ -20,14 +20,16 @@
     }
   ],
   "skills": {
-    "Cloud Platforms": ["AWS", "GCP"],
-    "DevOps Tools": ["Jenkins", "GitHub", "GitLab", "Docker", "Kubernetes", "Terraform"],
-    "Scripting & Automation": ["Bash", "CloudFormation", "Ansible"],
-    "Operating Systems": ["Linux (Ubuntu, CentOS, Red Hat)", "Windows"],
-    "Networking & Security": ["Network security", "SSL/TLS", "VPN", "Firewall"],
-    "Monitoring & Observability": ["Loki", "NewRelic", "Prometheus"],
-    "Applications Administration": ["GitLab", "Google Workspace", "Slack", "Cloudflare", "Jira"],
-    "Soft Skills": ["Problem solving", "Communication", "Cross‑functional collaboration", "Team management"]
+    "Cloud Platforms": ["AWS", "GCP", "Azure"],
+    "DevOps Tools": ["Jenkins", "GitHub Actions", "GitLab CI", "Argo CD", "Flux"],
+    "Containers & Orchestration": ["Docker", "Kubernetes", "EKS", "Helm", "Kustomize"],
+    "Infrastructure as Code": ["Terraform", "CloudFormation", "Ansible", "Packer"],
+    "Networking & Security": ["VPC", "Transit Gateway", "WAF", "Security Hub", "IAM", "SSO", "HashiCorp Vault"],
+    "SRE & Reliability": ["SLOs/SLIs", "Error Budgets", "Incident Management", "Chaos Testing"],
+    "Monitoring & Observability": ["CloudWatch", "Prometheus", "Grafana", "Loki", "ELK", "New Relic"],
+    "Messaging & Data": ["SQS", "SNS", "Kafka", "RDS", "DynamoDB", "ElastiCache"],
+    "Edge & Delivery": ["CloudFront", "ALB/NLB", "API Gateway", "Route53", "Cloudflare"],
+    "Scripting & Programming": ["Bash", "Python", "Go (basics)"]
   },
   "experience": [
     {
@@ -37,14 +39,14 @@
       "period": "Apr 2022 — Present",
       "highlights": [
         "Managed and maintained AWS infrastructure; operated Kubernetes for secure, scalable microservices environments",
-        "Built and maintained CI/CD pipelines with Jenkins and GitHub",
+        "Built and maintained CI/CD pipelines with Jenkins and GitHub Actions",
         "Managed Google Workspace and Slack administration",
         "Integrated security tooling into SDLC for compliance readiness (DPDP)",
         "Managed Cloudflare WAF and incident response processes",
         "Implemented observability with Loki to ensure high availability",
         "Coordinated vendor relations and streamlined operations"
       ],
-      "tech": ["AWS", "Jenkins", "GitLab", "Docker", "Kubernetes", "Cloudflare", "Loki", "Jamf", "ScaleFusion", "Bash"]
+      "tech": ["AWS", "Jenkins", "GitHub Actions", "GitLab", "Docker", "Kubernetes", "Cloudflare", "Loki", "Jamf", "ScaleFusion", "Bash"]
     },
     {
       "role": "System Administrator",

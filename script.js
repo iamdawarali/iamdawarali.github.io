@@ -2,6 +2,7 @@
   const html = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const yearEl = document.getElementById('year');
+  const heroCanvas = document.getElementById('heroParticles');
 
   function getPreferredTheme() {
     const saved = localStorage.getItem('theme');
@@ -17,6 +18,75 @@
   function initTheme() {
     const theme = getPreferredTheme();
     applyTheme(theme);
+  }
+
+  // Scroll reveal
+  function initReveal() {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('[data-reveal], [data-reveal-stagger]').forEach((el) => io.observe(el));
+    // Stagger indices
+    document.querySelectorAll('[data-reveal-stagger] > *').forEach((el, idx) => el.style.setProperty('--i', idx));
+  }
+
+  // Active nav highlight
+  function initActiveNav() {
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+    const map = new Map(sections.map((s) => [s.id, navLinks.find((a) => a.getAttribute('href') === `#${s.id}`)]));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const link = map.get(entry.target.id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((a) => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+    sections.forEach((s) => io.observe(s));
+  }
+
+  // Hero particles
+  function initParticles() {
+    if (!heroCanvas) return;
+    const ctx = heroCanvas.getContext('2d');
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    let w = 0, h = 0;
+    function resize() {
+      w = heroCanvas.clientWidth; h = heroCanvas.clientHeight;
+      heroCanvas.width = w * DPR; heroCanvas.height = h * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    const particles = Array.from({ length: 70 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h * 0.6 + h * 0.1,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2,
+      r: Math.random() * 1.6 + 0.4,
+      o: Math.random() * 0.5 + 0.2,
+    }));
+    function step() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach((p) => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < h * 0.1 || p.y > h * 0.9) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(192, 164, 107, ${p.o})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(step);
+    }
+    step();
   }
 
   function toggleTheme() {
@@ -50,6 +120,32 @@
     return tabs;
   }
 
+  function getSkillVisual(name) {
+    const iconFiles = new Map([
+      ['AWS', 'aws.svg'], ['GCP', 'gcp.svg'], ['Azure', 'azure.svg'],
+      ['Jenkins', 'jenkins.svg'], ['GitHub Actions', 'github-actions.svg'], ['GitLab CI', 'gitlab.svg'], ['Argo CD', 'argo.svg'], ['Flux', 'flux.svg'],
+      ['Docker', 'docker.svg'], ['Kubernetes', 'kubernetes.svg'], ['EKS', 'aws-eks.svg'], ['Helm', 'helm.svg'], ['Kustomize', 'kustomize.svg'],
+      ['Terraform', 'terraform.svg'], ['CloudFormation', 'cloudformation.svg'], ['Ansible', 'ansible.svg'], ['Packer', 'packer.svg'],
+      ['VPC', 'vpc.svg'], ['Transit Gateway', 'tgw.svg'], ['WAF', 'waf.svg'], ['Security Hub', 'security-hub.svg'], ['IAM', 'iam.svg'], ['SSO', 'sso.svg'], ['HashiCorp Vault', 'vault.svg'],
+      ['CloudWatch', 'cloudwatch.svg'], ['Prometheus', 'prometheus.svg'], ['Grafana', 'grafana.svg'], ['Loki', 'loki.svg'], ['ELK', 'elk.svg'], ['New Relic', 'newrelic.svg'],
+      ['SQS', 'sqs.svg'], ['SNS', 'sns.svg'], ['Kafka', 'kafka.svg'], ['RDS', 'rds.svg'], ['DynamoDB', 'dynamodb.svg'], ['ElastiCache', 'elasticache.svg'],
+      ['Bash', 'bash.svg'], ['Python', 'python.svg'], ['Go (basics)', 'go.svg']
+    ]);
+    const emojis = new Map([
+      ['AWS', '☁️'], ['GCP', '☁️'], ['Azure', '☁️'],
+      ['Jenkins', '🤖'], ['GitHub Actions', '⚙️'], ['GitLab CI', '🦊'], ['Argo CD', '🚀'], ['Flux', '🔁'],
+      ['Docker', '🐳'], ['Kubernetes', '⎈'], ['EKS', '⎈'], ['Helm', '⚓'], ['Kustomize', '🧩'],
+      ['Terraform', '🟪'], ['CloudFormation', '🧱'], ['Ansible', '🅰️'], ['Packer', '📦'],
+      ['VPC', '🌐'], ['Transit Gateway', '🧭'], ['WAF', '🛡️'], ['Security Hub', '🛡️'], ['IAM', '🪪'], ['SSO', '🔐'], ['HashiCorp Vault', '🔑'],
+      ['CloudWatch', '🕒'], ['Prometheus', '🔥'], ['Grafana', '📈'], ['Loki', '🧿'], ['ELK', '🌳'], ['New Relic', '🧪'],
+      ['SQS', '📬'], ['SNS', '📣'], ['Kafka', '🧵'], ['RDS', '🗄️'], ['DynamoDB', '🧊'], ['ElastiCache', '⚡'],
+      ['Bash', '💻'], ['Python', '🐍'], ['Go (basics)', '🐹']
+    ]);
+    const file = iconFiles.get(name);
+    if (file) return { type: 'icon', value: `./assets/icons/${file}` };
+    return { type: 'emoji', value: emojis.get(name) || '🔧' };
+  }
+
   function renderSkillsTabs(skills) {
     const tabsEl = document.getElementById('skillsTabs');
     const grid = document.getElementById('skillsGrid');
@@ -68,7 +164,28 @@
         items.forEach((skill) => {
           const chip = document.createElement('span');
           chip.className = 'chip';
-          chip.textContent = skill;
+          const visual = getSkillVisual(skill);
+          if (visual.type === 'icon') {
+            const img = document.createElement('img');
+            img.className = 'icon';
+            img.alt = `${skill} icon`;
+            img.loading = 'lazy';
+            img.src = visual.value;
+            img.onerror = () => {
+              img.remove();
+              const span = document.createElement('span');
+              span.className = 'icon-emoji';
+              span.textContent = getSkillVisual(skill).value;
+              chip.insertBefore(span, chip.firstChild);
+            };
+            chip.appendChild(img);
+          } else {
+            const span = document.createElement('span');
+            span.className = 'icon-emoji';
+            span.textContent = visual.value;
+            chip.appendChild(span);
+          }
+          chip.appendChild(document.createTextNode(skill));
           chips.appendChild(chip);
         });
         card.append(title, chips);
@@ -300,6 +417,9 @@
     yearEl.textContent = new Date().getFullYear();
     initTheme();
     themeToggle.addEventListener('click', toggleTheme);
+    initReveal();
+    initActiveNav();
+    initParticles();
 
     const profile = await loadProfile();
     hydrateHero(profile);
