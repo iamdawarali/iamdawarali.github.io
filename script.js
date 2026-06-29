@@ -186,6 +186,16 @@
     el.setAttribute('aria-hidden', 'true');
     return el;
   }
+  // Inline icon HTML for terminal output (real brand logo if available, else emoji).
+  function skillIconHTML(name) {
+    const key = SKILL_ICON.get(name);
+    if (key) {
+      const color = ICON_COLOR[key] || 'var(--accent)';
+      return `<span class="ico-term" style="--im:url('./assets/icons/${key}.svg');--ic:${color}"></span>`;
+    }
+    return `<span class="ico-emoji-term">${skillEmoji(name)}</span>`;
+  }
+
   // Append a logo (or emoji fallback) + label into a chip element.
   function fillChip(chip, name) {
     const ico = skillIconEl(name);
@@ -421,7 +431,7 @@
         const last = gi === groups.length - 1;
         out += `<span class="dim">${last ? '└──' : '├──'}</span> <span class="h">${esc(group)}</span>\n`;
         (items || []).forEach((s) => {
-          out += `<span class="dim">${last ? '   ' : '│  '}   </span><span class="m">${skillEmoji(s)}</span> <span class="v">${esc(s)}</span>\n`;
+          out += `<span class="dim">${last ? '   ' : '│  '}   </span>${skillIconHTML(s)} <span class="v">${esc(s)}</span>\n`;
         });
       });
       printBlock(out.trimEnd());
