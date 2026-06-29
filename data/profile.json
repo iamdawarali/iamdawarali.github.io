@@ -1,8 +1,9 @@
 {
   "name": "Dawar Ali",
-  "role": "DevOps Engineer",
-  "bio": "DevOps Engineer with 6+ years automating and optimizing AWS workloads. I design scalable infrastructure, robust CI/CD, and secure cloud platforms.",
-  "about": "DevOps Engineer with over 6 years of experience automating and optimizing mission‑critical deployments in AWS. Proficient with CI/CD (Jenkins, GitHub), containers (Docker, Kubernetes), and Infrastructure as Code (Terraform, CloudFormation). I integrate security into delivery, improve reliability, and collaborate across teams to ship with confidence.",
+  "role": "Senior DevOps Engineer",
+  "tagline": "I keep production boring and pipelines fast.",
+  "bio": "Senior DevOps Engineer with 6+ years automating, securing, and optimizing mission-critical cloud deployments on AWS — Kubernetes, Terraform, CI/CD, observability, and security-focused DevOps.",
+  "about": "Senior DevOps Engineer with 6+ years of experience automating, securing, and optimizing mission-critical cloud deployments in AWS. Skilled in Kubernetes, Terraform, Jenkins, GitLab, Docker, CI/CD automation, infrastructure as code, observability, and security-focused DevOps practices. Experienced in IT team leadership, application administration, audit support, DPDP readiness, and integrating AI tools into engineering and administration workflows.",
   "location": "Gurugram, Haryana, India",
   "contact": {
     "email": "iamdawarali@gmail.com",
@@ -20,33 +21,47 @@
     }
   ],
   "skills": {
-    "Cloud Platforms": ["AWS", "GCP", "Azure"],
-    "DevOps Tools": ["Jenkins", "GitHub Actions", "GitLab CI", "Argo CD", "Flux"],
-    "Containers & Orchestration": ["Docker", "Kubernetes", "EKS", "Helm", "Kustomize"],
-    "Infrastructure as Code": ["Terraform", "CloudFormation", "Ansible", "Packer"],
-    "Networking & Security": ["VPC", "Transit Gateway", "WAF", "Security Hub", "IAM", "SSO", "HashiCorp Vault"],
-    "SRE & Reliability": ["SLOs/SLIs", "Error Budgets", "Incident Management", "Chaos Testing"],
-    "Monitoring & Observability": ["CloudWatch", "Prometheus", "Grafana", "Loki", "ELK", "New Relic"],
-    "Messaging & Data": ["SQS", "SNS", "Kafka", "RDS", "DynamoDB", "ElastiCache"],
-    "Edge & Delivery": ["CloudFront", "ALB/NLB", "API Gateway", "Route53", "Cloudflare"],
-    "Scripting & Programming": ["Bash", "Python", "Go (basics)"]
+    "Cloud Platforms": ["AWS", "GCP"],
+    "DevOps Tools": ["Jenkins", "GitHub", "GitLab", "Docker", "Kubernetes", "Terraform"],
+    "Scripting and Automation": ["Bash", "CloudFormation", "Ansible"],
+    "Operating Systems": ["Linux (Ubuntu, CentOS, Red Hat)", "Windows"],
+    "Networking and Security": ["Network Security", "SSL/TLS", "VPN Setup", "Firewall Configuration"],
+    "Monitoring & Observability": ["Loki", "Prometheus", "New Relic"],
+    "Applications Administration": ["Google Workspace", "Slack", "Cloudflare", "Jira", "Jamf", "JumpCloud"],
+    "Soft Skills": ["Problem-solving", "Communication", "Cross-functional Collaboration", "Team Leadership"]
   },
   "experience": [
+    {
+      "role": "Senior DevOps Engineer",
+      "company": "ixigo",
+      "location": "Gurugram, Haryana, India",
+      "period": "Apr 2026 — Present",
+      "highlights": [
+        "Cloud platform ownership: drove production AWS + Kubernetes improvements for resilient, secure, scalable microservices workloads",
+        "Standardized cloud provisioning with Terraform for repeatability, governance, and control across infrastructure changes",
+        "Advanced Jenkins and GitLab CI/CD workflows and introduced AI-assisted review practices to strengthen quality gates",
+        "Provided technical leadership across multiple lines of business, aligning platform priorities and stakeholder expectations",
+        "Led enterprise administration (Google Workspace, Slack, Jamf, JumpCloud) with AI-enabled tooling for productivity",
+        "Partnered with security on vulnerability checks, audit readiness, and DPDP compliance preparation",
+        "Tuned Cloudflare WAF and app-layer protections; enhanced observability with Loki for platform health and incident investigation"
+      ],
+      "tech": ["Kubernetes", "Terraform", "AWS", "Jenkins", "GitLab", "Docker", "Google Workspace", "Slack", "Cloudflare", "Loki", "Jamf", "JumpCloud"]
+    },
     {
       "role": "DevOps Engineer",
       "company": "ixigo",
       "location": "Gurugram, Haryana, India",
-      "period": "Apr 2022 — Present",
+      "period": "Apr 2022 — Mar 2026",
       "highlights": [
-        "Managed and maintained AWS infrastructure; operated Kubernetes for secure, scalable microservices environments",
-        "Built and maintained CI/CD pipelines with Jenkins and GitHub Actions",
-        "Managed Google Workspace and Slack administration",
-        "Integrated security tooling into SDLC for compliance readiness (DPDP)",
-        "Managed Cloudflare WAF and incident response processes",
-        "Implemented observability with Loki to ensure high availability",
-        "Coordinated vendor relations and streamlined operations"
+        "Managed and maintained AWS infrastructure on Kubernetes for secure, scalable, reliable microservices environments",
+        "Designed and maintained robust CI/CD pipelines with Jenkins and GitHub for seamless integration and deployment",
+        "Managed IT teams across lines of business to align technology strategy and operational delivery",
+        "Administered Google Workspace and Slack for org-wide communication and productivity",
+        "Integrated security tooling into development workflows to assess and mitigate vulnerabilities",
+        "Supported security audits and DPDP compliance requirements; managed Cloudflare WAF settings",
+        "Established incident response protocols and implemented Loki-based monitoring for high availability"
       ],
-      "tech": ["AWS", "Jenkins", "GitHub Actions", "GitLab", "Docker", "Kubernetes", "Cloudflare", "Loki", "Jamf", "ScaleFusion", "Bash"]
+      "tech": ["AWS", "Jenkins", "GitLab", "Docker", "Kubernetes", "Google Workspace", "Slack", "Cloudflare", "Loki", "Jamf", "ScaleFusion", "Bash"]
     },
     {
       "role": "System Administrator",
@@ -54,15 +69,13 @@
       "location": "Gurugram, Haryana, India",
       "period": "Jul 2021 — Mar 2022",
       "highlights": [
-        "Maintained in‑house servers including Cloud VPN for reliable operations",
-        "Implemented LDAP with Google services and integrated with Cloud VPN and OS auth",
-        "Optimized infra with HAProxy, DNS, DHCP, Apache, Nginx",
-        "Migrated VPN server to AWS improving uptime and security",
-        "Secured MongoDB/MySQL via IP allow‑listing",
-        "Automated manual tasks with Bash scripting",
-        "Configured DNS/DHCP zones"
+        "Maintained and configured in-house servers including Cloud VPN for reliable operations",
+        "Set up LDAP with Google services, integrated with Cloud VPN and Windows/Mac authentication",
+        "Optimized infrastructure with HAProxy load balancing, DNS, DHCP, Apache, and Nginx",
+        "Migrated the in-house VPN server (with user certificates) to AWS, improving uptime and security",
+        "Implemented IP-based access control for MongoDB and MySQL; automated tasks with Bash scripting"
       ],
-      "tech": ["AWS", "HAProxy", "DNS", "DHCP", "Apache", "Nginx", "LDAP", "Google Workspace", "MongoDB", "MySQL", "Bash"]
+      "tech": ["AWS", "HAProxy", "DNS", "DHCP", "Apache", "Nginx", "LDAP", "Google Workspace", "MongoDB", "MySQL", "Bash", "Cloud VPN"]
     },
     {
       "role": "System Engineer",
@@ -70,9 +83,9 @@
       "location": "Gurugram, Haryana, India",
       "period": "Oct 2019 — Jun 2021",
       "highlights": [
-        "Directed and monitored installed systems and infrastructure for performance",
-        "Maintained high levels of system uptime",
-        "Administered mobile device management solutions"
+        "Directed and monitored installed systems and infrastructure for maximum availability and performance",
+        "Maintained high system uptime through continuous monitoring and maintenance strategies",
+        "Administered mobile device management solutions for organizational mobility and security"
       ],
       "tech": []
     }
@@ -80,17 +93,17 @@
   "projects": [
     {
       "name": "AWS Platform Hardening",
-      "description": "Hardened AWS accounts and workloads with IAM least‑privilege, CloudTrail/Config, and WAF protections; codified with Terraform.",
-      "tech": ["AWS", "Terraform", "CloudTrail", "AWS Config", "Cloudflare WAF"],
+      "description": "Hardened AWS accounts and workloads with least-privilege IAM, audit logging, and Cloudflare WAF protections; standardized with Terraform.",
+      "tech": ["AWS", "Terraform", "Cloudflare WAF", "IAM"],
       "repo": "",
       "demo": "",
       "category": "cloud",
       "period": "2024"
     },
     {
-      "name": "Kubernetes CI/CD with Jenkins",
-      "description": "Multi‑env pipelines building Docker images, security scanning, and progressive deploys to EKS with Helm.",
-      "tech": ["Jenkins", "Docker", "Kubernetes", "Helm"],
+      "name": "Kubernetes CI/CD with Jenkins & GitLab",
+      "description": "Multi-environment pipelines building Docker images with security scanning and progressive deploys to Kubernetes.",
+      "tech": ["Jenkins", "GitLab", "Docker", "Kubernetes"],
       "repo": "",
       "demo": "",
       "category": "cicd",
@@ -98,8 +111,8 @@
     },
     {
       "name": "Observability with Loki",
-      "description": "Centralized logs with Loki and dashboards for SLOs, improving MTTR and incident response.",
-      "tech": ["Loki", "Prometheus", "Grafana"],
+      "description": "Centralized logging and dashboards with Loki and Prometheus to improve platform visibility and incident response.",
+      "tech": ["Loki", "Prometheus", "New Relic"],
       "repo": "",
       "demo": "",
       "category": "observability",
@@ -110,7 +123,5 @@
     { "name": "AWS Certified Cloud Practitioner", "issuer": "AWS", "year": "", "url": "" },
     { "name": "Certified Kubernetes Administrator (CKA)", "issuer": "CNCF", "year": "", "url": "" }
   ],
-  "resumeUrl": ""
+  "resumeUrl": "./assets/Dawar_Ali_Resume.pdf"
 }
-
-

@@ -3,139 +3,150 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dawar Ali — DevOps Engineer</title>
-    <meta name="description" content="Portfolio of Dawar Ali, DevOps Engineer — projects, experience, and contact." />
-    <meta name="theme-color" content="#0b0f19" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <title>Dawar Ali — Senior DevOps Engineer</title>
+    <meta name="description" content="Dawar Ali — Senior DevOps Engineer. AWS platforms, Kubernetes, GitOps CI/CD, observability and security at scale. Interactive terminal portfolio." />
+    <meta name="theme-color" content="#0a0e14" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Dawar Ali — DevOps Engineer" />
-    <meta property="og:description" content="Portfolio of Dawar Ali, DevOps Engineer — projects, experience, and contact." />
+    <meta property="og:title" content="Dawar Ali — Senior DevOps Engineer" />
+    <meta property="og:description" content="Senior DevOps Engineer — AWS, Kubernetes, GitOps CI/CD, observability and security at scale." />
     <meta property="og:url" content="/" />
     <meta property="og:image" content="/assets/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- Animated boot sequence (runs once per session, skippable) -->
+    <div id="boot" class="boot" role="dialog" aria-label="Booting" aria-live="polite">
+      <pre id="bootLog" class="boot-log"></pre>
+      <div class="boot-skip">press any key to skip</div>
+    </div>
+
+    <div class="scanlines" aria-hidden="true"></div>
+    <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
     <header class="site-header terminal-header">
       <div class="container header-inner">
-        <div class="term-buttons" aria-hidden="true">
-          <span class="btn close"></span>
-          <span class="btn min"></span>
-          <span class="btn max"></span>
+        <div class="header-left">
+          <div class="term-buttons" aria-hidden="true">
+            <span class="btn close"></span>
+            <span class="btn min"></span>
+            <span class="btn max"></span>
+          </div>
+          <a class="brand" href="#home" id="brandName">dawar@portfolio:&nbsp;~</a>
         </div>
-        <a class="brand" href="#home" id="brandName">dawar@portfolio: ~</a>
-        <nav class="nav">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#education">Education</a>
-          <a href="#contact">Contact</a>
-          <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+        <nav class="nav" aria-label="Sections">
+          <a href="#about"><span class="nav-ico">👤</span>about</a>
+          <a href="#skills"><span class="nav-ico">🧰</span>skills</a>
+          <a href="#experience"><span class="nav-ico">💼</span>experience</a>
+          <a href="#projects"><span class="nav-ico">📦</span>projects</a>
+          <a href="#certifications"><span class="nav-ico">🎖️</span>certs</a>
+          <a href="#education"><span class="nav-ico">🎓</span>education</a>
+          <a href="#contact"><span class="nav-ico">✉️</span>contact</a>
+          <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">◐</button>
         </nav>
       </div>
     </header>
 
     <main id="home" class="site-main">
+      <!-- Interactive shell -->
       <section class="hero">
         <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
-        <div class="container" data-reveal>
-          <h1 id="heroName">Dawar Ali</h1>
-          <p class="subtitle" id="heroRole">DevOps Engineer</p>
-          <p class="lead" id="heroBio">I build reliable CI/CD pipelines, scalable infrastructure, and delightful developer platforms.</p>
-          <div class="cta-row">
-            <a id="ctaPrimary" class="button primary" href="#projects">View Projects</a>
-            <a id="ctaSecondary" class="button ghost" href="#contact">Contact</a>
+        <div class="container hero-inner">
+          <div class="hero-intro" data-reveal>
+            <h1 id="heroName">Dawar Ali</h1>
+            <p class="subtitle"><span class="prompt-accent">&gt;</span> <span id="heroRole">Senior DevOps Engineer</span><span class="cursor-blink">_</span></p>
+            <p class="lead" id="heroBio">I keep production boring and pipelines fast.</p>
+            <div class="socials" id="socialLinks"></div>
           </div>
-          <div class="socials" id="socialLinks"></div>
+
+          <div class="terminal" id="terminal" role="region" aria-label="Interactive terminal">
+            <div class="terminal-bar">
+              <span class="term-buttons" aria-hidden="true">
+                <span class="btn close"></span><span class="btn min"></span><span class="btn max"></span>
+              </span>
+              <span class="terminal-title">bash — dawar@portfolio</span>
+            </div>
+            <div class="terminal-body" id="termBody" tabindex="0">
+              <div id="termOutput" class="term-output"></div>
+              <div class="term-input-line" id="termInputLine">
+                <span class="term-ps1"><span class="ps1-user">dawar</span><span class="ps1-at">@</span><span class="ps1-host">portfolio</span><span class="ps1-colon">:</span><span class="ps1-path">~</span><span class="ps1-dollar">$</span></span>
+                <input id="termInput" class="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command input" />
+                <span class="term-hint" id="termHint">type <b>help</b> ↵</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="about" class="section container">
-        <h2>About</h2>
-        <p id="aboutText">This portfolio is data-driven. Update <code>data/profile.json</code> to customize your information.</p>
+      <section id="about" class="section container" data-reveal>
+        <h2 data-icon="👤">about</h2>
+        <p id="aboutText">This portfolio is data-driven. Update <code>data/profile.json</code> to customize.</p>
       </section>
 
-      <section id="skills" class="section container">
-        <h2>Tech Stack</h2>
+      <section id="skills" class="section container" data-reveal>
+        <h2 data-icon="🧰">tech stack</h2>
         <div class="tabs" id="skillsTabs">
-          <button class="tab active" data-tab="cloud">Cloud</button>
-          <button class="tab" data-tab="devops">DevOps</button>
-          <button class="tab" data-tab="others">Others</button>
+          <button class="tab active" data-tab="cloud">cloud</button>
+          <button class="tab" data-tab="devops">devops</button>
+          <button class="tab" data-tab="others">others</button>
         </div>
         <div id="skillsGrid" class="grid"></div>
       </section>
 
-      <section id="experience" class="section container">
-        <h2>Experience</h2>
+      <section id="experience" class="section container" data-reveal>
+        <h2 data-icon="💼">experience</h2>
         <div id="experienceList" class="timeline"></div>
       </section>
 
-      <section id="projects" class="section container">
-        <h2>Projects</h2>
+      <section id="projects" class="section container" data-reveal>
+        <h2 data-icon="📦">projects</h2>
         <div class="filters" id="projectFilters"></div>
         <div id="projectsGrid" class="grid"></div>
       </section>
 
-      <section id="certifications" class="section container">
-        <h2>Certifications</h2>
+      <section id="certifications" class="section container" data-reveal>
+        <h2 data-icon="🎖️">certifications</h2>
         <ul id="certList" class="list"></ul>
       </section>
 
-      <section id="education" class="section container">
-        <h2>Education</h2>
+      <section id="education" class="section container" data-reveal>
+        <h2 data-icon="🎓">education</h2>
         <div id="eduList" class="timeline"></div>
       </section>
 
-      <section id="contact" class="section container">
-        <h2>Contact</h2>
-        <p class="lead">My inbox is always open — whether you have a question or just want to say hello.</p>
+      <section id="contact" class="section container" data-reveal>
+        <h2 data-icon="✉️">contact</h2>
+        <p class="lead">My inbox is always open — whether it's an infra problem worth solving or just a hello.</p>
         <div class="cta-row">
-          <a id="contactCtaButton" class="button primary" href="#">Say Hello 👋</a>
+          <a id="contactCtaButton" class="button primary" href="#">say hello 👋</a>
+          <a id="resumeButton" class="button ghost" href="./assets/Dawar_Ali_Resume.pdf" target="_blank" rel="noopener noreferrer">download résumé ↓</a>
         </div>
-        <div style="height: 10px"></div>
+        <div style="height: 12px"></div>
         <div id="contactCards" class="cards"></div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container">
-        <p id="footerText">© <span id="year"></span> <span id="footerName">Dawar Ali</span>. All rights reserved.</p>
+        <p id="footerText"><span class="prompt-accent">$</span> echo "© <span id="year"></span> <span id="footerName">Dawar Ali</span> — built in the terminal"</p>
       </div>
     </footer>
 
     <script>
-      // Fallback data for local file viewing (no server). Update alongside data/profile.json.
+      // Fallback data for local file viewing (no server). Mirrors data/profile.json.
       window.PROFILE_FALLBACK = {
         name: "Dawar Ali",
-        role: "DevOps Engineer",
-        bio: "I build reliable CI/CD pipelines, scalable infrastructure, and delightful developer platforms.",
-        location: "",
-        contact: {
-          email: "",
-          linkedin: "https://www.linkedin.com/in/dawar-ali-devops/",
-          github: "",
-          website: ""
-        },
-        skills: {
-          "Cloud & Platforms": ["AWS", "Kubernetes", "Docker"],
-          "Infra as Code": ["Terraform", "Helm"],
-          "CI/CD": ["GitHub Actions", "Jenkins"],
-          "Observability": ["Prometheus", "Grafana"]
-        },
-        experience: [],
-        projects: [],
-        certifications: [],
-        resumeUrl: ""
+        role: "Senior DevOps Engineer",
+        bio: "I keep production boring and pipelines fast.",
+        contact: { email: "iamdawarali@gmail.com", linkedin: "https://www.linkedin.com/in/dawar-ali-devops/", github: "", website: "" },
+        skills: {}, experience: [], projects: [], certifications: [], education: [],
+        resumeUrl: "./assets/Dawar_Ali_Resume.pdf"
       };
     </script>
     <script src="./script.js" defer></script>
   </body>
-  </html>
-
-
+</html>
