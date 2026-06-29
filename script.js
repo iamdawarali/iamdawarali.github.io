@@ -666,39 +666,116 @@
       return;
     }
 
-    const lines = [
-      ['dim', 'Booting dawar@portfolio (kernel 6.x-cloud) ...'],
-      ['ok',  '[  OK  ] Reached target Cloud Init.'],
-      ['ok',  '[  OK  ] Mounted /aws /gcp /azure volumes.'],
-      ['ok',  '[  OK  ] Started Terraform state backend.'],
-      ['info','[ INFO ] Pulling container images ...'],
-      ['ok',  '[  OK  ] Kubernetes control plane is healthy.'],
-      ['ok',  '[  OK  ] Started CI/CD pipeline daemon (jenkins, argocd).'],
-      ['ok',  '[  OK  ] Observability stack online (prometheus, grafana, loki).'],
-      ['warn','[ WARN ] Coffee level low — proceeding anyway.'],
-      ['ok',  '[  OK  ] Security policies applied (IAM, WAF, Vault).'],
-      ['ok',  '[  OK  ] SLOs nominal · error budget healthy.'],
-      ['dim', ''],
-      ['b',   'login: dawar'],
-      ['dim', 'Last login: just now on tty-portfolio'],
-      ['dim', 'Loading profile ...'],
-    ];
-
     let skipped = false;
     const skip = () => { skipped = true; };
     window.addEventListener('keydown', skip, { once: true });
     boot.addEventListener('click', skip, { once: true });
 
-    for (const [cls, text] of lines) {
-      if (skipped) break;
+    // Global pacing multiplier — raise to slow the whole boot down. ~1.0 ≈ 13s, 1.45 ≈ 18s.
+    const SPEED = 1.45;
+
+    // Append one boot line. opts: {type} types char-by-char; {pause} ms after.
+    async function addLine(cls, text, opts) {
+      opts = opts || {};
+      if (skipped) return;
       const span = document.createElement('span');
-      span.className = cls;
-      span.textContent = text + '\n';
+      if (cls) span.className = cls;
       log.appendChild(span);
-      await sleep(text === '' ? 80 : 90 + Math.random() * 120);
+      if (opts.type) {
+        for (let i = 0; i < text.length; i++) {
+          if (skipped) { span.textContent = text; break; }
+          span.textContent += text[i];
+          await sleep((opts.cps || 24) * SPEED);
+        }
+        span.textContent += '\n';
+      } else {
+        span.textContent = text + '\n';
+      }
+      boot.scrollTop = boot.scrollHeight;
+      if (skipped) return;
+      await sleep((opts.pause != null ? opts.pause : (240 + Math.random() * 150)) * SPEED);
     }
 
-    if (!skipped) await sleep(360);
+    // Profile-derived details (with safe fallbacks).
+    const name = PROFILE.name || 'Dawar Ali';
+    const role = PROFILE.role || 'Senior DevOps Engineer';
+    const loc = PROFILE.location || 'Gurugram, India';
+    const tagline = PROFILE.tagline || PROFILE.bio || '';
+    const c = PROFILE.contact || {};
+    const skillCount = Object.values(PROFILE.skills || {}).reduce((a, b) => a + (b ? b.length : 0), 0);
+    const certs = (PROFILE.certifications || []).map((x) => x.name).join(' · ');
+
+    // ── Phase 1: kernel + services ──────────────────────────────
+    await addLine('dim',  'Booting dawar@portfolio (kernel 6.8.0-cloud-amd64) ...', { pause: 520 });
+    await addLine('info', '[ INFO ] POST self-test: cpu=ok  mem=caffeine  net=up', { pause: 360 });
+    await addLine('ok',   '[  OK  ] Reached target Cloud Init.');
+    await addLine('ok',   '[  OK  ] Mounted volumes: /aws  /gcp.');
+    await addLine('ok',   '[  OK  ] Started Terraform state backend.');
+    await addLine('info', '[ INFO ] Pulling container images ........', { pause: 700 });
+    await addLine('ok',   '[  OK  ] Kubernetes control plane is healthy.');
+    await addLine('ok',   '[  OK  ] Started CI/CD daemon (jenkins, gitlab).');
+    await addLine('ok',   '[  OK  ] Observability online (prometheus, loki, new relic).');
+    await addLine('ok',   '[  OK  ] Security policies applied (IAM, WAF, Cloudflare).');
+    await addLine('warn', '[ WARN ] Coffee level low — proceeding anyway.', { pause: 520 });
+    await addLine('ok',   '[  OK  ] Incident response runbooks loaded.');
+    await addLine('ok',   '[  OK  ] SLOs nominal · error budget healthy.', { pause: 400 });
+    await addLine('info', '[ INFO ] Running pre-flight checks ........', { pause: 800 });
+
+    // ── Phase 2: load profile (progress) ───────────────────────
+    await addLine('dim', '', { pause: 120 });
+    await addLine('info', '[ INFO ] Mounting /home/dawar/profile ...', { pause: 500 });
+    for (const pct of [17, 48, 76, 100]) {
+      if (skipped) break;
+      const total = 24, fill = Math.round((pct / 100) * total);
+      await addLine('dim', '          [' + '#'.repeat(fill) + '-'.repeat(total - fill) + '] ' + pct + '%',
+        { pause: pct === 100 ? 520 : 320 });
+    }
+
+    // ── Phase 3: identity / about me ────────────────────────────
+    await addLine('dim', '', { pause: 120 });
+    await addLine('info', '── identity ───────────────────────────────', { pause: 320 });
+    await addLine('b',   '  user      : ' + name, { type: true, cps: 36, pause: 320 });
+    await addLine('info','  title     : ' + role, { type: true, cps: 22, pause: 360 });
+    await addLine('dim', '  location  : ' + loc);
+    await addLine('dim', '  uptime    : 6+ years in production (since Oct 2019 @ ixigo)');
+    await addLine('dim', '  promotion : Senior DevOps Engineer — Apr 2026 → present');
+    await addLine('ok',  '  domains   : AWS · Kubernetes · Terraform · CI/CD · Observability · Security');
+    await addLine('dim', '  modules   : ' + skillCount + ' skills loaded');
+    if (certs) await addLine('dim', '  certs     : ' + certs);
+    const edu = (PROFILE.education || [])[0];
+    if (edu) await addLine('dim', '  education : ' + [edu.degree, edu.school].filter(Boolean).join(' — '));
+    await addLine('dim', '  also      : IT/DevOps leadership · audit & DPDP readiness · AI-assisted workflows');
+    if (c.email) await addLine('dim', '  contact   : ' + c.email + (c.linkedin ? '  ·  linkedin.com/in/dawar-ali-devops' : ''), { pause: 360 });
+    if (tagline) {
+      await addLine('dim', '', { pause: 120 });
+      await addLine('y', '  "' + tagline + '"', { type: true, cps: 20, pause: 520 });
+    }
+
+    // ── Phase 4: login + handoff ────────────────────────────────
+    await addLine('dim', '', { pause: 160 });
+    await addLine('b',   'login: dawar', { pause: 360 });
+    await addLine('ok',  'Authentication: passwordless — visitor trusted ✓', { pause: 360 });
+    await addLine('dim', 'Last login: just now on tty-portfolio');
+    await addLine('info','Starting interactive shell ...', { pause: 500 });
+
+    // Final loader bar — fills in place to give a beat to finish reading.
+    if (!skipped) {
+      const barSpan = document.createElement('span');
+      barSpan.className = 'ok';
+      log.appendChild(barSpan);
+      const W = 32;
+      for (let i = 0; i <= W; i++) {
+        if (skipped) { barSpan.textContent = '  [' + '#'.repeat(W) + '] 100%'; break; }
+        const pct = Math.round((i / W) * 100);
+        barSpan.textContent = '  [' + '#'.repeat(i) + '·'.repeat(W - i) + '] ' + pct + '%';
+        boot.scrollTop = boot.scrollHeight;
+        await sleep(95 * SPEED);
+      }
+      barSpan.textContent += '\n';
+      await addLine('b', '  welcome aboard ✓', { pause: 650 });
+    }
+
+    if (!skipped) await sleep(420);
     sessionStorage.setItem('booted', '1');
     boot.classList.add('hidden');
     setTimeout(() => boot.remove(), 450);

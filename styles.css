@@ -75,9 +75,11 @@ code { font-family: var(--font-body); background: color-mix(in oklab, var(--acce
   background: #06090e;
   display: flex; flex-direction: column; justify-content: flex-start;
   padding: clamp(20px, 6vh, 70px) clamp(18px, 6vw, 90px);
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
   transition: opacity 420ms ease;
 }
+.boot::-webkit-scrollbar { display: none; }
 .boot.hidden { opacity: 0; pointer-events: none; }
 .boot-log {
   margin: 0;
